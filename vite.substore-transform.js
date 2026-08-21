@@ -137,8 +137,11 @@ export default function getParser() {
                 }
             }
 
-            if (id.includes('sub-store/backend/src/core/proxy-utils/parsers/peggy/')) {
-                contents = precompilePeggyParser(contents, id, this);
+            if (
+              id.includes('sub-store/backend/src/core/proxy-utils/parsers/peggy/') &&
+              /\bpeggy\.generate\s*\(/.test(contents)
+            ) {
+              contents = precompilePeggyParser(contents, id, this);
             }
 
             if (id.includes('vendor/express.js')) {
